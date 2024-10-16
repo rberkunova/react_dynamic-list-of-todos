@@ -3,13 +3,13 @@ import { Todo } from '../../types/Todo';
 
 interface Props {
   todos: Todo[];
-  onShow: (todo: Todo) => void;
+  handleShow: (todo: Todo) => void;
   selectedTodoId?: number;
 }
 
 export const TodoList: React.FC<Props> = ({
   todos,
-  onShow,
+  handleShow,
   selectedTodoId,
 }) => {
   return (
@@ -35,7 +35,7 @@ export const TodoList: React.FC<Props> = ({
               )}
             </td>
             <td>
-              <button data-cy="selectButton" onClick={() => onShow(todo)}>
+              <button data-cy="selectButton" onClick={() => handleShow(todo)}>
                 <i
                   className={
                     selectedTodoId === todo.id

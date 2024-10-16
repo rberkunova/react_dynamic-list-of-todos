@@ -32,7 +32,7 @@ export const App: React.FC = () => {
     fetchTodos();
   }, []);
 
-  const handleShow = (todo: Todo) => {
+  const handleTodoSelect = (todo: Todo) => {
     if (selectedTodoId === todo.id) {
       setSelectedTodoId(undefined);
     } else {
@@ -40,15 +40,15 @@ export const App: React.FC = () => {
     }
   };
 
-  const handleFilterChange = (value: string) => {
+  const handleFilterUpdate = (value: string) => {
     setFilter(value);
   };
 
-  const handleStatusChange = (value: string) => {
+  const handleStatusSelect = (value: string) => {
     setStatus(value);
   };
 
-  const handleClear = () => {
+  const handleFilterClear = () => {
     setFilter('');
   };
 
@@ -76,10 +76,10 @@ export const App: React.FC = () => {
             <div className="block">
               <TodoFilter
                 filter={filter}
-                onFilterChange={handleFilterChange}
+                onFilterChange={handleFilterUpdate}
                 status={status}
-                onStatusChange={handleStatusChange}
-                onClear={handleClear}
+                onStatusChange={handleStatusSelect}
+                onClear={handleFilterClear}
               />
             </div>
 
@@ -89,7 +89,7 @@ export const App: React.FC = () => {
               ) : (
                 <TodoList
                   todos={filteredTodos}
-                  onShow={handleShow}
+                  handleShow={handleTodoSelect}
                   selectedTodoId={selectedTodoId}
                 />
               )}
@@ -101,7 +101,7 @@ export const App: React.FC = () => {
       {selectedTodo && (
         <TodoModal
           todo={selectedTodo}
-          onClose={() => setSelectedTodoId(undefined)}
+          handleClose={() => setSelectedTodoId(undefined)}
         />
       )}
     </>
